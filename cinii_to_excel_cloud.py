@@ -11,10 +11,37 @@ st.set_page_config(layout="wide")
 st.markdown("""
 <style>
 [data-testid="stDataFrame"] * { font-size: 12px !important; }
+[data-testid="stSidebar"] { min-width: 120px !important; max-width: 120px !important; }
 </style>
 """, unsafe_allow_html=True)
 
-st.title("CiNii 論文検索 to Excel (Cloud)")
+with st.sidebar:
+    st.markdown("""
+<a href="https://donate.sasakireijiyagi.com" target="_blank" style="
+    display: inline-block;
+    background: linear-gradient(160deg, #e63946 0%, #c1121f 100%);
+    color: white;
+    text-align: center;
+    padding: 14px 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 2.0;
+    width: fit-content;
+    box-shadow: 0 4px 14px rgba(230,57,70,0.45);
+    letter-spacing: 0.05em;
+    border-top: 1px solid rgba(255,255,255,0.3);
+">
+<span style="font-size:20px;">🤍</span><br>
+<span style="font-size:10px; opacity:0.85; letter-spacing:0.1em;">SUPPORT</span><br>
+<span style="line-height:1.4; display:inline-block;">佐々木<br>研究室を<br>寄附で<br>応援！</span>
+</a>
+""", unsafe_allow_html=True)
+
+st.title("CiNii 一目瞭然　［日本語文献瞬間検索］")
+st.markdown("[九州大学臨床心理学講座　佐々木玲仁研究室](https://sasakireijiyagi.com/home)")
+st.markdown("CiNiiの日本語文献データを、もっと手軽に。結果はその場で一覧表示、Excelファイルにも書き出せます。")
 
 with st.form(key="search_form"):
     keyword = st.text_input("検索語を入力してください", value="", placeholder="例：風景構成法")
