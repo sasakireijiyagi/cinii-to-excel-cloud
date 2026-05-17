@@ -17,25 +17,45 @@ st.markdown("""
 
 with st.sidebar:
     st.markdown("""
-<a href="https://donate.sasakireijiyagi.com" target="_blank" style="
-    display: inline-block;
-    background: linear-gradient(160deg, #e63946 0%, #c1121f 100%);
-    color: white;
-    text-align: center;
-    padding: 14px 10px;
+<style>
+.donate-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    height: 130px;
     border-radius: 12px;
-    text-decoration: none;
+    text-decoration: none !important;
     font-weight: bold;
     font-size: 13px;
-    line-height: 2.0;
-    width: fit-content;
-    box-shadow: 0 4px 14px rgba(230,57,70,0.45);
     letter-spacing: 0.05em;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.donate-btn:hover { text-decoration: none !important; }
+</style>
+<a href="https://readyfor.jp/projects/ibasho2" target="_blank" class="donate-btn" style="
+    background: linear-gradient(160deg, #e63946 0%, #c1121f 100%);
+    color: white;
+    box-shadow: 0 4px 14px rgba(230,57,70,0.45);
     border-top: 1px solid rgba(255,255,255,0.3);
 ">
-<span style="font-size:20px;">🤍</span><br>
-<span style="font-size:10px; opacity:0.85; letter-spacing:0.1em;">SUPPORT</span><br>
-<span style="line-height:1.4; display:inline-block;">佐々木<br>研究室を<br>寄附で<br>応援！</span>
+<span style="font-size:20px;">🔥</span>
+<span style="font-size:10px; opacity:0.85; letter-spacing:0.1em; line-height:1.4;">CLOUD<br>FUNDING</span>
+<span style="line-height:1.4;">クラファン<br>実施中！</span>
+</a>
+<a href="https://donate.sasakireijiyagi.com" target="_blank" class="donate-btn" style="
+    background: white;
+    color: #c1121f;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    border: 2px solid #e63946;
+">
+<span style="font-size:20px;">❤️</span>
+<span style="font-size:10px; opacity:0.7; letter-spacing:0.1em;">SUPPORT</span>
+<span style="line-height:1.4;">佐々木<br>研究室を<br>寄附で<br>応援！</span>
 </a>
 """, unsafe_allow_html=True)
 
