@@ -62,6 +62,7 @@ with st.sidebar:
 st.title("CiNii 一目瞭然　［日本語文献瞬間検索］")
 st.markdown("[九州大学臨床心理学講座　佐々木玲仁研究室](https://sasakireijiyagi.com/home)")
 st.markdown("CiNiiの日本語文献データを、もっと手軽に。結果はその場で一覧表示、Excelファイルにも書き出せます。")
+st.caption("本アプリは国立情報学研究所（NII）が提供するCiNii APIを利用しています。")
 
 with st.form(key="search_form"):
     keyword = st.text_input("検索語を入力してください", value="", placeholder="例：風景構成法")
