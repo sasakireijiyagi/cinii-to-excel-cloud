@@ -179,14 +179,16 @@ if run and keyword.strip():
     else:
         st.write(f"totalResults: {total}")
         all_records = []
+        status = st.empty()
         for start in range(1, total+1, 100):
-            st.write(f"現在{start}件目取得中...")
+            status.info(f"取得中… {start} / {total} 件")
             json_data = fetch_articles_json(keyword, start, count=100)
             if not json_data:
                 continue
             records = parse_articles_json(json_data)
             all_records.extend(records)
             time.sleep(0.5)
+        status.empty()
         if all_records:
             all_records.sort(key=lambda r: r['_sort_year'], reverse=True)
             st.session_state.all_records = all_records
