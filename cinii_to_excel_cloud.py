@@ -195,6 +195,16 @@ if run and keyword.strip():
             st.session_state.display_count = 100
             excel_bytes = save_to_excel(all_records, keyword)
             st.session_state.excel_bytes = excel_bytes
+            try:
+                ifttt_key = st.secrets.get("IFTTT_KEY", "")
+                if ifttt_key:
+                    requests.post(
+                        f"https://maker.ifttt.com/trigger/cinii_search/with/key/{ifttt_key}",
+                        json={"value1": keyword, "value2": len(all_records)},
+                        timeout=3
+                    )
+            except Exception:
+                pass
         else:
             st.warning("レコードが取得できませんでした")
 
