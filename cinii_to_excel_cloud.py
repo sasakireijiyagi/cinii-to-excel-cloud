@@ -226,6 +226,8 @@ if "all_records" in st.session_state and st.session_state.all_records:
     display_count = st.session_state.display_count
     total_records = len(all_records)
 
+    st.markdown("🌱 [子どもの居場所に関するクラウドファンディング実施中！](https://readyfor.jp/projects/ibasho2)")
+
     display_columns = ['リンク', '著者', '出版年', 'タイトル', '掲載誌名', '巻', '号', 'ページ範囲', '出版社名', '結合カラム']
     df_display = pd.DataFrame(all_records[:display_count])[display_columns]
 
