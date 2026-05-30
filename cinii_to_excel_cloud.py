@@ -37,16 +37,6 @@ with st.sidebar:
 }
 .donate-btn:hover { text-decoration: none !important; }
 </style>
-<a href="https://readyfor.jp/projects/ibasho2" target="_blank" class="donate-btn" style="
-    background: linear-gradient(160deg, #e63946 0%, #c1121f 100%);
-    color: white;
-    box-shadow: 0 4px 14px rgba(230,57,70,0.45);
-    border-top: 1px solid rgba(255,255,255,0.3);
-">
-<span style="font-size:20px;">🔥</span>
-<span style="font-size:10px; opacity:0.85; letter-spacing:0.1em; line-height:1.4;">CLOUD<br>FUNDING</span>
-<span style="line-height:1.4;">クラファン<br>実施中！</span>
-</a>
 <a href="https://donate.sasakireijiyagi.com" target="_blank" class="donate-btn" style="
     background: white;
     color: #c1121f;
