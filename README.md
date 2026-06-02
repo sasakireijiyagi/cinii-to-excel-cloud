@@ -1,5 +1,7 @@
 # CiNii 一目瞭然　［日本語文献瞬間検索］
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20515899.svg)](https://doi.org/10.5281/zenodo.20515899)
+
 CiNiiの日本語文献データを、もっと手軽に。結果はその場で一覧表示、Excelファイルにも書き出せます。
 
 🔗 **[アプリを使う](https://cinii-to-excel-cloud-ffvog4pekzpvzk823jreac.streamlit.app/)**
