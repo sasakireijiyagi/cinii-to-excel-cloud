@@ -8,6 +8,9 @@ import io
 
 st.set_page_config(layout="wide")
 
+# これを超えるヒット数のときは取得せず、検索語を絞ってもらう
+MAX_RESULTS = 1000
+
 st.markdown("""
 <style>
 [data-testid="stDataFrame"] * { font-size: 12px !important; }
@@ -166,6 +169,8 @@ if run and keyword.strip():
     total = fetch_total_results(keyword)
     if total == 0:
         st.warning("データなしまたは取得失敗")
+    elif total > MAX_RESULTS:
+        st.warning(f"ヒット数が{MAX_RESULTS}を超えました（{total:,}件）。検索語を絞り込んで下さい。")
     else:
         st.write(f"totalResults: {total}")
         all_records = []
@@ -185,16 +190,6 @@ if run and keyword.strip():
             st.session_state.display_count = 100
             excel_bytes = save_to_excel(all_records, keyword)
             st.session_state.excel_bytes = excel_bytes
-            try:
-                ifttt_key = st.secrets.get("IFTTT_KEY", "")
-                if ifttt_key:
-                    requests.post(
-                        f"https://maker.ifttt.com/trigger/cinii_search/with/key/{ifttt_key}",
-                        json={"value1": keyword, "value2": len(all_records)},
-                        timeout=3
-                    )
-            except Exception:
-                pass
         else:
             st.warning("レコードが取得できませんでした")
 

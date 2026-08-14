@@ -10,7 +10,6 @@ COPY . .
 
 EXPOSE 8501
 
-# secrets は ~/apps/cinii-db/.streamlit をマウントして渡す（イメージには焼き込まない）
 CMD ["streamlit", "run", "cinii_to_excel_cloud.py", \
      "--server.port=8501", \
      "--server.address=0.0.0.0", \
