@@ -151,6 +151,9 @@ def fetch_articles_json(keyword, start, count=100):
         st.error(f"[start={start}] HTTP error: {e}")
         return None
 
+def stop_search():
+    st.session_state.search_stopped = True
+
 def save_to_excel(records, keyword):
     df = pd.DataFrame(records)
     if '_sort_year' in df.columns:
@@ -165,14 +168,38 @@ def save_to_excel(records, keyword):
     return output
 
 if run and keyword.strip():
+    # 件数だけ先に確かめ、取得するかどうかの判断を pending_search に持ち越す
+    st.session_state.pending_search = {
+        "keyword": keyword,
+        "total": fetch_total_results(keyword),
+        "force": False,
+    }
+
+if st.session_state.pop("search_stopped", False):
+    st.info("検索を中止しました。")
+
+pending = st.session_state.get("pending_search")
+if pending:
+    keyword = pending["keyword"]
+    total = pending["total"]
     st.info(f"検索語: {keyword}")
-    total = fetch_total_results(keyword)
+
     if total == 0:
         st.warning("データなしまたは取得失敗")
-    elif total > MAX_RESULTS:
+        st.session_state.pending_search = None
+    elif total > MAX_RESULTS and not pending["force"]:
         st.warning(f"ヒット数が{MAX_RESULTS}を超えました（{total:,}件）。検索語を絞り込んで下さい。")
+        # 1リクエスト100件・間に0.5秒待つので、所要時間はおおよそ件数に比例する
+        st.caption(f"このまま取得すると約{max(1, round(total / 100 / 60)):,}分かかります。")
+        if st.button(f"それでもこのまま{total:,}件を取得する"):
+            st.session_state.pending_search = {**pending, "force": True}
+            st.rerun()
     else:
+        st.session_state.pending_search = None
         st.write(f"totalResults: {total}")
+        # 取得ループの前に置く。押すと実行中のスクリプトが打ち切られて先頭から再実行され、
+        # pending_search は None なので取得は再開されない
+        st.button("検索を中止する", on_click=stop_search)
         all_records = []
         status = st.empty()
         for start in range(1, total+1, 100):
