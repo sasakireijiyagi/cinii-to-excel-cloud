@@ -4,7 +4,7 @@
 
 CiNiiの日本語文献データを、もっと手軽に。結果はその場で一覧表示、Excelファイルにも書き出せます。
 
-🔗 **[アプリを使う](https://cinii-to-excel-cloud-ffvog4pekzpvzk823jreac.streamlit.app/)**
+🔗 **[アプリを使う](https://cinii-db.sasakireijiyagi.com)**
 
 ---
 
